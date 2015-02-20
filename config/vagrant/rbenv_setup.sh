@@ -34,5 +34,6 @@ rm -rf rubygems-${GEMS_VERSION}*
 
 gem install bundler --no-rdoc --no-ri -q
 gem install rails --no-rdoc --no-ri -q
+gem install foreman --no-rdoc --no-ri -q
 
 echo "=== End Vagrant Provisioning using 'config/vagrant/rbenv_setup.sh'"

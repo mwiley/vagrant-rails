@@ -19,10 +19,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, path: "#{config_path}/sqlite_setup.sh"
   config.vm.provision :shell, path: "#{config_path}/postgresql_setup.sh"
 
-  # PostgreSQL Server port forwarding
+  # PostgreSQL Server port
   config.vm.network "forwarded_port", host: 5432, guest: 5432
 
-  # Rails development server port forwarding
-  config.vm.network "forwarded_port", host: 3000, guest: 3000
+  # Default Rails server port
+  config.vm.network "forwarded_port", host: 5000, guest: 5000
+
+  # Foreman server port
+  config.vm.network "forwarded_port", host: 5000, guest: 5000
 
 end
