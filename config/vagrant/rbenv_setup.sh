@@ -27,15 +27,14 @@ rbenv global $RUBY_VERSION
 
 
 echo "===== Installing Rubygems $GEMS_VERSION"
-wget http://production.cf.rubygems.org/rubygems/rubygems-${GEMS_VERSION}.tgz
+wget -q http://production.cf.rubygems.org/rubygems/rubygems-${GEMS_VERSION}.tgz
 tar xzf rubygems-${GEMS_VERSION}.tgz
 cd rubygems-$GEMS_VERSION
 ruby setup.rb
 cd ..
 rm -rf rubygems-${GEMS_VERSION}*
 
-if [ -z `which bundle` ]; then
-  gem install bundler --no-rdoc --no-ri
-fi
+gem install bundler --no-rdoc --no-ri
+gem install rails --no-rdoc --no-ri
 
 echo "=== End Vagrant Provisioning using 'config/vagrant/rbenv_setup.sh'"
