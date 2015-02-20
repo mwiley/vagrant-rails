@@ -2,7 +2,7 @@
 
 Based off project: https://github.com/jackdb/pg-app-dev-vm
 
-Includes the Heroku's Cedar-14 stack and SQLite. The goal it to getting your Rails app running in a virtual machine as fast as possible, and to deploy with no surprises.
+Includes Heroku's Cedar-14 stack and SQLite. The goal is getting your Rails app running in a virtual machine as fast as possible, and to deploy with no surprises.
 
 * Ubuntu 14.04
 * PostgreSQL 9.4
@@ -12,6 +12,20 @@ Includes the Heroku's Cedar-14 stack and SQLite. The goal it to getting your Rai
 * Rubygems (currently 2.2.2)
 * Imagemagick
 * Phantomjs (for poltergeist gem)
+
+To get started, clone this project.
+
+```
+$ git clone https://github.com/mwiley/vagrant-rails.git
+```
+
+This box is also available on [Atlas](https://atlas.hashicorp.com/mwiley/boxes/vagrant-rails). Using this method, you will have to manually add forwarded ports to your Vagrantfile, and download the Procfile and databases.yml files from this repository.
+
+```
+$ vagrant init mwiley/vagrant-rails
+```
+
+## Running a Rails app
 
 ```
 $ vagrant up
