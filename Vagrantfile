@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", host: 5432, guest: 5432
 
   # Default Rails server port
-  config.vm.network "forwarded_port", host: 5000, guest: 5000
+  config.vm.network "forwarded_port", host: 3000, guest: 3000
 
   # Foreman server port
   config.vm.network "forwarded_port", host: 5000, guest: 5000

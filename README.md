@@ -50,7 +50,8 @@ $ cp config/pg_database.yml config/database.yml
 ## Using the Foreman gem
 Foreman is a gem that executes your app in the same way it will be when deployed. More information is available [here](https://devcenter.heroku.com/articles/procfile#developing-locally-with-foreman).
 
-Add the Puma gem to your Gemfile. This is the webserver that Heroku will use to run your app.
+Add the Puma gem to your Gemfile. This is the webserver that Heroku will use to run your app. The Procfile is included.
+
 ```ruby
 source 'https://rubygems.org'
 ...
