@@ -7,7 +7,7 @@ APP_DB_USER=postgres_db
 APP_DB_PASS=$APP_DB_USER
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
-# APP_DB_NAME=${APP_DB_USER}_unused
+APP_DB_NAME=vagrant_dev
 
 # Edit the following to change the version of PostgreSQL that is installed
 PG_VERSION=9.4
@@ -19,7 +19,7 @@ print_db_usage () {
   echo "Your PostgreSQL database has been setup and can be accessed on your local machine on the forwarded port (default: 15432)"
   echo "  Host: localhost"
   echo "  Port: 15432"
-  echo "  Database: <DATABASE_NAME>"
+  echo "  Database: $APP_DB_NAME"
   echo "  Username: $APP_DB_USER"
   echo "  Password: $APP_DB_PASS"
   echo ""
@@ -62,11 +62,10 @@ then
 fi
 
 # Update package list and upgrade all packages
-apt-get update
-apt-get -y upgrade
+apt-get -y -qq upgrade
 
-apt-get -y install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION"
-apt-get -y install libpq-dev # For building ruby 'pg' gem
+apt-get -y -qq install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION"
+apt-get -y -qq install libpq-dev # For building ruby 'pg' gem
 
 PG_CONF="/etc/postgresql/$PG_VERSION/main/postgresql.conf"
 PG_HBA="/etc/postgresql/$PG_VERSION/main/pg_hba.conf"

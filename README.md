@@ -2,7 +2,8 @@
 
 Based off project: https://github.com/jackdb/pg-app-dev-vm
 
-Includes the Heroku Cedar-14 stack and SQLite for Rails development. The goal is making it as fast as possible to go from 'rails new' to running your app on a virtual machine.
+Includes the Heroku Cedar-14 stack and SQLite for Rails development. The goal is making it as fast as possible to go from 'rails new' to running your app on a virtual machine and to deploy painlessly as
+possible.
 
 * Ubuntu 14.04
 * PosgreSQL 9.4

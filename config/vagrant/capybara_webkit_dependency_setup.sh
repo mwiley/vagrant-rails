@@ -4,7 +4,7 @@ export DISPLAY=:99
 
 echo "=== Begin Vagrant Provisioning using 'config/vagrant/capybara_webkit_dependency_setup.sh'"
 
-apt-get -y update
+apt-get -y -qq update
 
 # if [ -z `which make` ]; then apt-get -y install build-essential; fi
 if [ -z `which qmake` ]; then apt-get -y install qt5-default libqt5webkit5-dev; fi
@@ -15,7 +15,7 @@ if [ -z `which qmake` ]; then apt-get -y install qt5-default libqt5webkit5-dev; 
 # if [ -z `which firefox` ]; then apt-get -y install firefox; fi
 
 if [ ! -f /etc/init.d/xvfb ]; then
-  apt-get -y install xvfb
+  apt-get -y -qq install xvfb
   echo "export DISPLAY=${DISPLAY}" >> /home/vagrant/.bashrc
   tee /etc/init.d/xvfb <<-EOF
     #!/bin/bash
