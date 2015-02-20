@@ -16,7 +16,7 @@ PG_VERSION=9.4
 # Changes below this line are probably not necessary
 ###########################################################
 print_db_usage () {
-  echo "Your PostgreSQL database has been setup and can be accessed on your local machine on the forwarded port (default: 15432)"
+  echo "PostgreSQL has been setup and can be accessed on your local machine on the forwarded port (default: 15432)"
   echo "  Host: localhost"
   echo "  Port: 15432"
   echo "  Database: $APP_DB_NAME"
@@ -51,18 +51,12 @@ then
   exit
 fi
 
-PG_REPO_APT_SOURCE=/etc/apt/sources.list.d/pgdg.list
-if [ ! -f "$PG_REPO_APT_SOURCE" ]
-then
-  # Add PG apt repo:
-  echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > "$PG_REPO_APT_SOURCE"
+# Add PG apt repo:
+echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
-  # Add PGDG repo key:
-  wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
-fi
-
-# Update package list and upgrade all packages
-apt-get -y -qq upgrade
+# Add PG repo key:
+wget --quiet -O - http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc | apt-key add -
+sudo apt-get update -qq
 
 apt-get -y -qq install "postgresql-$PG_VERSION" "postgresql-contrib-$PG_VERSION"
 apt-get -y -qq install libpq-dev # For building ruby 'pg' gem
@@ -75,7 +69,7 @@ PG_DIR="/var/lib/postgresql/$PG_VERSION/main"
 sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" "$PG_CONF"
 
 # Append to pg_hba.conf to add password auth:
-echo "host    all             all             all                     md5" >> "$PG_HBA"
+echo "local    all             all                                  md5" >> "$PG_HBA"
 
 # Explicitly set default client_encoding
 echo "client_encoding = utf8" >> "$PG_CONF"
@@ -85,17 +79,17 @@ service postgresql restart
 
 cat << EOF | su - postgres -c psql
 -- Create the database user:
-CREATE USER $APP_DB_USER PASSWORD '$APP_DB_PASS' CREATEDB;
+CREATE USER $APP_DB_USER PASSWORD '$APP_DB_PASS';
 EOF
 
-# cat << EOF | su - postgres -c psql
-# -- Create the database:
-# CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
-#                                   LC_COLLATE='en_US.utf8'
-#                                   LC_CTYPE='en_US.utf8'
-#                                   ENCODING='UTF8'
-#                                   TEMPLATE=template0;
-# EOF
+cat << EOF | su - postgres -c psql
+-- Create the database:
+CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
+                                   LC_COLLATE='en_US.utf8'
+                                   LC_CTYPE='en_US.utf8'
+                                   ENCODING='UTF8'
+                                   TEMPLATE=template0;
+EOF
 
 # Tag the provision time:
 date > "$PROVISIONED_ON"

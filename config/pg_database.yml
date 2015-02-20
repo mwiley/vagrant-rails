@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: vagrant_dev
+  host: localhost
+  pool: 5
+  username: postgres_db
+  password: postgres_db
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: vagrant_test
+  host: localhost
+  pool: 5
+  username: postgres_db
+  password: postgres_db

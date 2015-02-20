@@ -22,4 +22,28 @@ $ cd rails-test
 $ rails s -b 0.0.0.0
 ```
 
-Navigate to localhost:3000 in your browser and you should see the default Rails page.
+Navigate to http://localhost:3000 in your browser and you should see the default Rails page. You must include the '-b 0.0.0.0' flag when starting the server.
+
+## Using PostgreSQL
+
+SQLite is included for convenience, but you should configure PostgreSQL to keep consistent with a production environment.
+
+Add the gem to your Gemfile.
+
+```ruby
+source 'https://rubygems.org'
+...
+gem 'pg'
+...
+
+```
+
+```
+$ bundle
+```
+
+Overwrite the default config/databases.yml with the one provided.
+
+```
+$ cp config/pg_database.yml config/database.yml
+```
