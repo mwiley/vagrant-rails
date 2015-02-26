@@ -5,14 +5,7 @@ export DISPLAY=:99
 echo "=== Begin Vagrant Provisioning using 'config/vagrant/capybara_webkit_dependency_setup.sh'"
 
 apt-get -y -qq update
-
-# if [ -z `which make` ]; then apt-get -y install build-essential; fi
 if [ -z `which qmake` ]; then apt-get -y install qt5-default libqt5webkit5-dev; fi
-# if [ -z `which git` ]; then apt-get -y install git-core; fi
-# if [ -z `which vim` ]; then apt-get -y install vim; fi
-# if [ -z `which xml2-config` ]; then apt-get -y install libxml2-dev; fi
-# if [ -z `which xslt-config` ]; then apt-get -y install libxslt-dev; fi
-# if [ -z `which firefox` ]; then apt-get -y install firefox; fi
 
 if [ ! -f /etc/init.d/xvfb ]; then
   apt-get -y -qq install xvfb

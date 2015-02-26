@@ -8,6 +8,7 @@ APP_DB_PASS=$APP_DB_USER
 
 # Edit the following to change the name of the database that is created (defaults to the user name)
 APP_DB_NAME=vagrant_dev
+APP_DB_TEST_NAME=vagrant_test
 
 # Edit the following to change the version of PostgreSQL that is installed
 PG_VERSION=9.4
@@ -83,8 +84,16 @@ CREATE USER $APP_DB_USER PASSWORD '$APP_DB_PASS';
 EOF
 
 cat << EOF | su - postgres -c psql
--- Create the database:
+-- Create the databases:
 CREATE DATABASE $APP_DB_NAME WITH OWNER=$APP_DB_USER
+                                   LC_COLLATE='en_US.utf8'
+                                   LC_CTYPE='en_US.utf8'
+                                   ENCODING='UTF8'
+                                   TEMPLATE=template0;
+EOF
+
+cat << EOF | su - postgres -c psql
+CREATE DATABASE $APP_DB_TEST_NAME WITH OWNER=$APP_DB_USER
                                    LC_COLLATE='en_US.utf8'
                                    LC_CTYPE='en_US.utf8'
                                    ENCODING='UTF8'
