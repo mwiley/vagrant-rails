@@ -1,15 +1,15 @@
 # Vagrant Rails Development Box
 
-Based off project: https://github.com/jackdb/pg-app-dev-vm
+Based off projects: https://github.com/jackdb/pg-app-dev-vm and https://github.com/kiere/vagrant-heroku-cedar-14
 
-Includes Heroku's Cedar-14 stack and SQLite. The goal is getting your Rails app running in a virtual machine as fast as possible, and to deploy with no surprises.
+Includes Heroku's Cedar-14 stack and SQLite. The goal is getting your Rails app running in a virtual machine as fast as possible, and to deploy with no surprises. This box also uses [zsh](http://www.slideshare.net/jaguardesignstudio/why-zsh-is-cooler-than-your-shell-16194692) as the default shell.
 
 * Ubuntu 14.04
 * PostgreSQL 9.4
 * SQLite
 * NodeJS 0.10.25 (for ExecJS)
-* Ruby (currently 2.1.5)
-* Rubygems (currently 2.2.2)
+* Ruby (currently 2.2.1)
+* Rubygems (currently 2.4.5)
 * Imagemagick
 * Phantomjs (for poltergeist gem)
 
