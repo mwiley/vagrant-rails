@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell, path: "#{config_path}/build_dependency_setup.sh"
   config.vm.provision :shell, path: "#{config_path}/git_setup.sh"
+  config.vm.provision :shell, path: "#{config_path}/zsh_setup.sh"
 
   config.vm.provision :shell, path: "#{config_path}/nodejs_setup.sh"
   config.vm.provision :shell, path: "#{config_path}/rbenv_setup.sh", privileged: false
